@@ -1,11 +1,11 @@
 body{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:Impact, fantasy;
 }
 
 h1{
     font-weight: bold;
     font-size: 40px;
-    color: #B40000;
+    color: black;
     display: flex;
     justify-content: center;
 }
@@ -26,18 +26,19 @@ h1{
 }
 
 .flag{
-    width: 70%;
+    width: 63%;
+    height: 149px;
     border: solid 1.5px black;
 }
+/* 
+.flag:hover{
+    width: 90%;
+} */
 
 .names{
     align-self: center;
     justify-self: center;
     font-size: 15px;
-}
-
-.remove:hover{
-    background-color:bisque;
 }
 
 .moreText{
@@ -46,18 +47,18 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    border: solid 2px black;
+    border: solid 1px black;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     font-size: 15px;
-
+    width: 100%;
+    height: 100%;
 }
-
 
 .remove{
     display: flex;
@@ -65,16 +66,21 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 400px;
-    right: 400px;
-    bottom: 400px;
-    left: 400px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
     border: solid 2px white;
     border-radius: 2px;
     background-color:white;
+    width: 3%;
+    height: 4%;
 }
 
+.remove:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
 
 .btn{
     border: solid 2px black;
@@ -90,4 +96,20 @@ h1{
 .btn:hover{
     background-color: black;
     color: white;
+    cursor: pointer;  
 }
+
+.search{
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.searchBox{
+    width: 20%;
+    height: 20%;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+}
+

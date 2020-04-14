@@ -7,7 +7,7 @@ fetch('https://restcountries.eu/rest/v2/all')
     console.log(data);
     console.log("Hi \n worl")
 
-    pageRender(data)
+    pageRender(data);
             
   });
 
@@ -20,7 +20,6 @@ function pageRender(data){
     name = data[i].name;
     capital = data[i].capital;
     countryCode = data[i].callingCodes[0];
-    
 
     country = document.createElement('div');
     country.setAttribute('class', 'country');
@@ -35,8 +34,7 @@ function pageRender(data){
 
     showName = document.createElement('pre');
     showName.setAttribute('class', 'names');
-        // showName.setAttribute('id', 'name'+i);
-    showName.textContent = "Country Name:" + name + "\n" + "Capital:" + capital + "\n" + "Country Code:" + countryCode;
+    showName.textContent = "Country Name: " + name + "\n" + "Capital City: " + capital + "\n" + "Country Code: " + countryCode;
     document.querySelector('#country-'+i).appendChild(showName);
 
     showMore = document.createElement('button');
@@ -65,7 +63,7 @@ function togglePopup(popup, showMoreText, data){
 
   showMoreText = document.createElement('pre');
   showMoreText.setAttribute('class', 'moreText');
-  showMoreText.textContent = "Region:"+region + '\n' + "Population:" + population + '\n' + "Currency:" + currency;
+  showMoreText.textContent = "Region: "+region + '\n' + "Population: " + population + '\n' + "Currency: " + currency;
   document.querySelector('.popup').appendChild(showMoreText);
 
   remove = document.createElement('button');
@@ -78,3 +76,4 @@ function togglePopup(popup, showMoreText, data){
     remove.parentNode.removeChild(remove);
   })
 }
+
