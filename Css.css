@@ -26,14 +26,9 @@ h1{
 }
 
 .flag{
-    width: 63%;
-    height: 149px;
-    border: solid 1.5px black;
+    width: 70%;
+    height: 15em;
 }
-/* 
-.flag:hover{
-    width: 90%;
-} */
 
 .names{
     align-self: center;
@@ -112,4 +107,3 @@ h1{
     margin: 10px;
     padding: 10px;
 }
-

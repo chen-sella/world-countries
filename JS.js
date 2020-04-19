@@ -3,27 +3,26 @@ fetch('https://restcountries.eu/rest/v2/all')
     return response.json();
   })
   .then((data) => {
-    
-    console.log(data);
-    console.log("Hi \n worl")
-
-    pageRender(data);
-            
+    pageRender(data);  
+    console.log(typeof(data));
   });
 
 function pageRender(data){
-  for (i = 0 ; i< 250 ; i++){
+  var nameArr = [];
+  for (i = 0 ; i< data.length ; i++){
     var code, flag, country, showFlag, name, showName, capital, countryCode, showMore, showMoreText, popup;
 
     code = data[i].alpha3Code.toLowerCase();
     flag = "https://restcountries.eu/data/" + code + ".svg";
     name = data[i].name;
+    nameArr.push(name);
     capital = data[i].capital;
     countryCode = data[i].callingCodes[0];
 
     country = document.createElement('div');
     country.setAttribute('class', 'country');
     country.setAttribute('id', 'country-' + i);
+    country.setAttribute('name', name.toLowerCase());
     document.querySelector('.countries').appendChild(country);
 
     showFlag = document.createElement('img');
@@ -45,8 +44,15 @@ function pageRender(data){
 
     popup = document.querySelector('.popup');
     showMore.addEventListener('click',() => togglePopup(popup, showMoreText, data));
-
   }
+
+  var search;   
+  search = document.createElement('input');
+  search.setAttribute('class', 'searchBox');
+  search.setAttribute('placeholder', 'Insert Country Name');
+  document.querySelector('.search').appendChild(search);
+  
+  search.addEventListener('keyup',() =>  debounce(searchBox(event, data),2000));
 }
 
 function togglePopup(popup, showMoreText, data){
@@ -58,8 +64,6 @@ function togglePopup(popup, showMoreText, data){
   population = data[i].population;
   region = data[i].region;
   currency = data[i].currencies[0].name;
-
-  console.log(population);
 
   showMoreText = document.createElement('pre');
   showMoreText.setAttribute('class', 'moreText');
@@ -77,3 +81,46 @@ function togglePopup(popup, showMoreText, data){
   })
 }
 
+function searchBox(event, data){
+  var inputValue, sliced, countryName, deleteCountry, deleteList, key;
+
+  key = event.keyCode;
+  console.log(key);
+  inputValue = document.querySelector('.searchBox').value;
+  deleteList = [];
+  console.log(inputValue);
+
+  if (key == 8){
+    console.log('Hi');
+    pageRender(deleteList);
+  }
+  else{
+    for (i = 0 ; i<data.length ; i++){
+      countryName = data[i].name.toLowerCase();
+      sliced = countryName.slice(0, inputValue.length);
+      deleteCountry = document.querySelector('#country-'+i);
+      
+    
+      if (inputValue != sliced){
+        if (deleteCountry != null){
+          deleteList.push(data[i]);
+          deleteCountry.parentNode.removeChild(deleteCountry);
+        }
+      }
+    }
+      
+      console.log(deleteList);
+      console.log(typeof(deleteList));
+  }
+
+  }
+  
+
+
+function debounce(fn, duration) {
+  var timer;
+  return function(){
+    clearTimeout(timer);
+    timer = setTimeout(fn, duration);
+  }
+}
