@@ -128,4 +128,9 @@ h1{
     [class*="remove"] {
         width: 5%;
       } 
+    [class*="title"] {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      } 
   }
