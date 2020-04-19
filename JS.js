@@ -4,7 +4,7 @@ fetch('https://restcountries.eu/rest/v2/all')
   })
   .then((data) => {
     pageRender(data);  
-    console.log(typeof(data));
+    search(data);
   });
 
 function pageRender(data){
@@ -44,15 +44,8 @@ function pageRender(data){
 
     popup = document.querySelector('.popup');
     showMore.addEventListener('click',() => togglePopup(popup, showMoreText, data));
-  }
 
-  var search;   
-  search = document.createElement('input');
-  search.setAttribute('class', 'searchBox');
-  search.setAttribute('placeholder', 'Insert Country Name');
-  document.querySelector('.search').appendChild(search);
-  
-  search.addEventListener('keyup',() =>  debounce(searchBox(event, data),2000));
+  }
 }
 
 function togglePopup(popup, showMoreText, data){
@@ -81,43 +74,45 @@ function togglePopup(popup, showMoreText, data){
   })
 }
 
-function searchBox(event, data){
-  var inputValue, sliced, countryName, deleteCountry, deleteList, key;
+function search(data){
+  var search;   
+  search = document.createElement('input');
+  search.setAttribute('class', 'searchBox');
+  search.setAttribute('placeholder', 'Insert Country Name');
+  document.querySelector('.search').appendChild(search);
+  
+  search.addEventListener('keyup', debounce( () => searchBox(data),1000));
+}
 
-  key = event.keyCode;
-  console.log(key);
-  inputValue = document.querySelector('.searchBox').value;
-  deleteList = [];
-  console.log(inputValue);
+function searchBox(data){
+  var inputValue, deleteCountry;
+  
+  inputValue = document.querySelector('.searchBox').value.toLowerCase();
 
-  if (key == 8){
-    console.log('Hi');
-    pageRender(deleteList);
-  }
-  else{
-    for (i = 0 ; i<data.length ; i++){
-      countryName = data[i].name.toLowerCase();
-      sliced = countryName.slice(0, inputValue.length);
-      deleteCountry = document.querySelector('#country-'+i);
-      
+  for (i = 0 ; i<data.length ; i++){
+    countryName = data[i].name.toLowerCase();
+    deleteCountry = document.querySelector('#country-'+i);
     
-      if (inputValue != sliced){
-        if (deleteCountry != null){
-          deleteList.push(data[i]);
-          deleteCountry.parentNode.removeChild(deleteCountry);
-        }
-      }
+    if (deleteCountry != null){
+      deleteCountry.parentNode.removeChild(deleteCountry);
     }
-      
-      console.log(deleteList);
-      console.log(typeof(deleteList));
-  }
-
   }
   
+  if (inputValue != ""){
+    fetch('https://restcountries.eu/rest/v2/name/'+ inputValue)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data1) => {
+    pageRender(data1)
+  });
+  }
+  else{
+    pageRender(data);
+  } 
+  }
 
-
-function debounce(fn, duration) {
+function debounce(fn, duration){
   var timer;
   return function(){
     clearTimeout(timer);
