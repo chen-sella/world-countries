@@ -122,5 +122,8 @@ h1{
     [class*="btn"] {
         width: 90%;
       }
+    [class*="searchBox"] {
+        width: 40%;
+      }
       
   }
