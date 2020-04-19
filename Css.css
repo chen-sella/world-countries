@@ -124,6 +124,8 @@ h1{
       }
     [class*="searchBox"] {
         width: 40%;
-      }
-      
+      } 
+    [class*="remove"] {
+        width: 5%;
+      } 
   }
