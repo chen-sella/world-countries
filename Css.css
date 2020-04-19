@@ -27,7 +27,7 @@ h1{
 
 .flag{
     width: 70%;
-    height: 15em;
+    height: 13em;
 }
 
 .names{
@@ -48,7 +48,7 @@ h1{
     bottom: 0;
     left: 0;
     border: solid 1px black;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     color: white;
     font-size: 15px;
     width: 100%;
@@ -78,7 +78,7 @@ h1{
 }
 
 .btn{
-    border: solid 2px black;
+    border: solid 1.5px lightblue;
     border-radius: 2px;
     background-color:white;
     padding-bottom: 2px;
@@ -89,7 +89,7 @@ h1{
 }
 
 .btn:hover{
-    background-color: black;
+    background-color:lightblue;
     color: white;
     cursor: pointer;  
 }
@@ -106,4 +106,5 @@ h1{
     border-radius: 3px;
     margin: 10px;
     padding: 10px;
+    border: solid 1.5px lightblue;
 }
